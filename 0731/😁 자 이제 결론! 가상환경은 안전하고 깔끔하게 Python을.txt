@@ -1,0 +1,49 @@
+😁 자 이제 결론! 가상환경은 "안전하고 깔끔하게 Python을 쓰는 방법"이므로 사용 권장~~
+    예) 아래 처럼 myenv라는 이름의 독립된 환경을 만들면, 거기서만 필요한 패키지를 설치할 수 있다.
+
+     > conda create -n myenv python=3.12
+     > conda activate myenv
+
+
+참고 : conda 명령으로 가상 환경을 위한 test 폴더 만들기 
+
+참고 : 윈도우 기준 - 경우에 따라 window11 버전에서는 Anaconda prompt 에서 진행하도록 한다.
+
+C:\~~> conda create --name test                          <= python 만 있는 최소한의 환경을 만들 때
+
+C:\~~> conda create -n test                                  <= 위와 기능 동일 ( 손가락이 쑤시거나 아플 땐 이렇게 해도 됨)
+
+C:\~~> conda create --name test python=3.12     <= python 버전을 지정하고 환경을 만들 때
+
+C:\~~> conda create --name test anaconda         <= anaconda 환경으로 만들 때
+
+C:\~~> conda create --name test python=3.12 anaconda    <= 파이썬 버전을 지정하고 아나콘다 환경을 만들고 싶을 때
+
+ 그러면 Anaconda\envs 폴더에 test 폴더가 만들어짐    C:\~~\Anaconda\envs\test
+
+ 그리고 test라는 가상환경에는 numpy, pandas, matplotlib, jupyter, scipy, scikit-learn, spyder 등이 한 번에 설치된다.
+ 참고: 나중에 필요해졌다면? 이미 만든 환경에 다음처럼 anaconda를 추가로 설치할 수도 있다.
+  > conda install anaconda
+
+
+54번 페이지 한번 읽어보자 - 파이선 애널리시스
+------------------------------------------------------------------
+EDA가 어떤 핵심 기능을 수행하는지를 6가지 핵심 영역으로 나누어 볼 수 있다.
+1. Data Understanding (데이터 이해)
+   - 데이터를 처음 접할 때 가장 먼저 해야 할 작업
+   - 변수의 의미, 단위, 타입, 결측치 여부 등을 파악   → 모델링 이전에 데이터를 “해석”하는 첫 단계
+2. Data Cleaning (데이터 정제)
+   - 이상치 제거, 결측값 처리, 중복 제거, 포맷 통일 등
+   - 데이터 품질을 개선해 모델 학습의 정확도 향상   → Garbage in, garbage out 방지
+3. Pattern Discovery (패턴 발견)
+   - 변수 간의 관계, 트렌드, 상관관계 등을 탐색
+   - 비즈니스 인사이트 도출 가능 (예: 고객 세분화)   → 예측 모델의 방향성 설정
+4. Data Visualization (데이터 시각화)
+   - 데이터를 그래픽으로 표현해 직관적으로 이해
+   - 히스토그램, 박스플롯, 산점도, 히트맵 등 활용    → 데이터 속 숨은 구조나 이상값 시각적 탐색
+5. Model Selection (모델 선택)
+   - EDA 결과를 바탕으로 어떤 모델이 적합한지 판단
+   예: 정규분포 → 선형 회귀 가능 / 비선형 → 트리 기반  :  모델링의 사전 설계에 결정적 역할
+6. Quality Control (품질 관리)
+   - 전체 분석 과정 중 데이터와 결과의 일관성 유지
+   - 분석 오류, 편향 데이터, 변형된 스케일 문제 확인  → 신뢰할 수 있는 결과 도출을 위한 검증 단계
