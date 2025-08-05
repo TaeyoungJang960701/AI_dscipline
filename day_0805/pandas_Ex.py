@@ -71,9 +71,19 @@ print(df)
 #          A     B    C     D
 #   r6   15   10    2   (A+B)
 
-
-
-
+# 1, 2)
+df = pd.DataFrame(np.random.randint(1,21, size = (5,3)),columns = ['A','B','C'], index = ['r1','r2','r3','r4','r5'])
+print(df)
+# 3)
+print(df[df['A'] > 10])
+# 4)
+df['D(=A+B)'] = df['A'] + df['B']
+print(df)
+# 5)
+df.drop('r3', inplace=True)
+print(df)
+# 6)
+df.loc['r6'] = [15, 10,2,15+10]
 
 # pandas 문제 4)
 # 다음과 같은 재고 정보를 가지고 있는 딕셔너리 data가 있다고 하자.
