@@ -25,10 +25,13 @@ plt.rcParams['axes.unicode_minus']= False   # 한글 깨짐 방지 코드 두줄
 
 #      - 부서명별 연봉의 평균으로 가로 막대 그래프를 작성 ㅇㅇ
 
+# 비밀번호 설정을 다르게 했습니다 집에서는 비밀번호를 1234로 했어요
+# 'password' : 'skfrnwl1@',
+
 config = {
     'host': '127.0.0.1',
     'user' : 'root',
-    'password' : 'skfrnwl1@',
+    'password' : '1234',
     'database' : 'mydb',
     'port' : 3306,
     'charset' : 'utf8'
@@ -80,12 +83,22 @@ try:
     
 #      - 직원별 담당 고객자료(고객번호, 고객명, 고객전화)를 출력. 담당 고객이 없으면 "담당 고객  X"으로 표시
 
+    # 담당 고객이 없는 상황에 맞게 데이터베이스 가져오는방식에 ifnull을 사용
     sql = '''
-        select gogekno, gogekname, gogektel
-        from gogek
-        inner join jikwon
+        select jikwonno, jikwonname,
+            ifnull(gogekno, '담당 고객 X') as gogekno,
+            ifnull(gogekname, '담당 고객 X') as gogekname,
+            ifnull(gogektel, '담당 고객 X') as gogektel
+        from jikwon
+        left join gogek
         on jikwon.jikwonno = gogek.gogekdamsano
-        '''
+        order by jikwon.jikwonno
+    '''
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    df_customers = pd.DataFrame(rows, columns=['사번','직원명','고객번호','고객명','고객전화'])
+    print('고객 명단 :\n', df_customers)
+
     
 #      - 부서명별 연봉의 평균으로 가로 막대 그래프를 작성
     buser_mean = df1.groupby(['busername'])['jikwonpay'].mean()
@@ -104,7 +117,7 @@ finally:
 config = {
     'host': '127.0.0.1',
     'user' : 'root',
-    'password' : 'skfrnwl1@',
+    'password' : '1234@',
     'database' : 'mydb',
     'port' : 3306,
     'charset' : 'utf8'
@@ -173,3 +186,52 @@ finally:
 #      ...
 
 #      인원수 : * 명
+
+
+config = {
+    'host': '127.0.0.1',
+    'user' : 'root',
+    'password' : 'skfrnwl1@',
+    'database' : 'mydb',
+    'port' : 3306,
+    'charset' : 'utf8'
+}
+
+try:
+    conn = MySQLdb.connect(**config)
+    cursor = conn.cursor()
+
+    # 사번, 직원명 입력 받기
+    input_jikwonno = input('사번 입력: ').strip()
+    input_jikwonname = input('직원명 입력: ').strip()
+
+    # 로그인 검증용 SQL
+    sql = '''
+        select jikwon.jikwonno, jikwon.jikwonname, buser.busername, jikwon.jikwonjik,
+               buser.busertel, jikwon.jikwongen
+        from jikwon
+        inner join buser on jikwon.busernum = buser.buserno
+        where jikwon.jikwonno = %s and jikwon.jikwonname = %s
+    '''
+    cursor.execute(sql, (input_jikwonno, input_jikwonname))
+    result = cursor.fetchall()
+
+    if not result:
+        print('로그인 실패: 사번 또는 직원명이 일치하지 않습니다.')
+        sys.exit()
+
+    # 로그인 성공 시 정보 출력
+    print('사번\t직원명\t부서명\t직급\t부서전화\t성별')
+    for row in result:
+        print(f'{row[0]}\t{row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\t{row[5]}')
+
+    # 로그인 성공 인원 수 출력 (같은 사번+이름으로 여러 레코드 있을 수 있으므로)
+    print(f'인원수 : {len(result)} 명')
+
+except MySQLdb.OperationalError as e:
+    print('DB 연결 또는 쿼리 실행 오류:', e)
+except Exception as e:
+    print('처리 오류:', e)
+finally:
+    if 'conn' in globals():
+        conn.close()
