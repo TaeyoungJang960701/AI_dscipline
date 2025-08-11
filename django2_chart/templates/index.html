@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    메인
+    <br>
+    <a href = '/show'>시애틀 날씨 데이터로 기술통계와 라인 차트</a>
+    {% comment %} <br> {% endcomment %}
+    {% comment %} url pattern 사용 {% endcomment %}
+    <a href = {% url 'show' %}>시애틀 날씨 데이터로 기술통계와 라인 차트</a>
+    
+</body>
+</html>

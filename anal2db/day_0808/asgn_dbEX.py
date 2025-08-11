@@ -54,7 +54,7 @@ try:
     df2.pivot_table(index = 'jikwongen', values = 'jikwonypay')
 
     # 실행할때 주석 해제
-    # print(df2)
+    print(df2)
 
     man = df2[df2['jikwongen'] == '남']
     woman = df2[df2['jikwongen'] == '여']
@@ -74,7 +74,7 @@ try:
     plt.ylabel('단위 : (만) 원')
 
     # 실행할때 주석 해제
-    # plt.show()
+    plt.show()
 
 #      - 부서명, 성별로 교차 테이블을 작성 (crosstab(부서, 성별))
     # 변수의 빈도를 계산해줌

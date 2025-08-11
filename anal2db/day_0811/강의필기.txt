@@ -1,1 +1,61 @@
-ㅇ
+피클 쓸때는 config 쓸 필요가 없나봐
+config 쓰면 원격으로 뭐 어떻게 할 수 잇대 근데 피클은 내장 파일이 잇어야 읽을 수 잇어
+
+장고에서 매니지.py 는 웬만해서는 건들지 말자 라고 하시네
+
+오늘 배우는 장고의 목적은
+그동안은 맷플랏립으로 띄우는 결과창은 어플리케이션을 통해 봣엇는데
+이제는 웹을 통해 그래프를 띄울거다
+
+쟝고 폴더로 가서
+1. python manage.py startapp myapp
+
+2. settings.py 수정
+
+	INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    'taeyongAi', # 이거 넣엇다 스타트앱으로 한거
+]
+------------------------------------------------------------------
+	TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / 'templates'], # 이거 넣엇다
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+------------------------------------------------------------------
+STATIC_URL = 'static/' # 이거 넣엇다
+STATICFILES_DIRS = [BASE_DIR / 'static'] # 이거 넣엇다
+WSGI_APPLICATION = "mainapp.wsgi.application"
+
+실행된 장고의 템플릿 홈페이지 링크에 마우스를 올렷을 때 해당하는 주소가 알맞게 뜨는지 확인
+중요!!!
+
+
+
+그리고 오늘 만진 장고 파일이 너무 많다 이건 그냥 파일을 열어보자
+
+
+
+
+
+
+
+
+
+
+
+

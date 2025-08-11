@@ -6,6 +6,7 @@ import sys
 import pickle
 import csv
 from pandas import DataFrame, Series
+import os
 
 # pandas 문제 7)
 plt.rc('font', family= 'malgun gothic')     # 한글 깨짐 방지 코드 두줄
@@ -28,14 +29,14 @@ plt.rcParams['axes.unicode_minus']= False   # 한글 깨짐 방지 코드 두줄
 # 비밀번호 설정을 다르게 했습니다 집에서는 비밀번호를 1234로 했어요
 # 'password' : 'skfrnwl1@',
 
-config = {
-    'host': '127.0.0.1',
-    'user' : 'root',
-    'password' : '1234',
-    'database' : 'mydb',
-    'port' : 3306,
-    'charset' : 'utf8'
-}
+# config = {
+#     'host': '127.0.0.1',
+#     'user' : 'root',
+#     'password' : '1234',
+#     'database' : 'mydb',
+#     'port' : 3306,
+#     'charset' : 'utf8'
+# } 이거는 피클 쓸때 필요 없는거래
 
 try:
     with open('./mymaria.dat', mode = 'rb') as obj:
@@ -148,7 +149,7 @@ try:
 
 #      - pivot_table을 사용하여 성별 연봉의 평균을 출력
     df2.pivot_table(index = 'jikwongen', values = 'jikwonypay')
-    # print(df2)
+    print(df2)
     man = df2[df2['jikwongen'] == '남']
     woman = df2[df2['jikwongen'] == '여']
 
