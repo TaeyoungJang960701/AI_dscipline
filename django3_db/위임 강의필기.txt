@@ -1,0 +1,23 @@
+쟝고에서 마리아디비 디비 가져올때는 settings.py를 수정할 게 많다
+이런거 넣어줘야돼
+
+STATIC_URL = 'static/' # 이거 넣엇다
+STATICFILES_DIRS = [BASE_DIR / 'static'] # 이거 넣엇다
+
+
+수정도 해줘야되고
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": 'mydb',
+        'USER' : 'root',
+        'PASSWORD' : 'skfrnwl1@',
+        'HOST' : '127.0.0.1',
+        'PORT' : 3306,
+        'OPTIONS' : {
+            'charset' : 'utf8mb4',
+            'init_command' : "SET sql_mode = 'STRICT_TRANS_TABLES'",
+        }
+    }
+}

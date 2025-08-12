@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>직원 정보 조회</title>
+</head>
+<body>
+    <h1>직원 정보 조회</h1>
+
+    <form method="get" action="{% url 'dbshow' %}">
+        부서명 검색: <input type="text" name="dept" value="{{ dept }}">
+        <input type="submit" value="검색">
+    </form>
+
+    <h2>사번, 직원명, 부서명, 직급, 연봉, 근무년수</h2>
+    {{ join_html|safe }}
+
+    <h2>부서명·직급별 연봉 합계 및 평균</h2>
+    {{ stats_html|safe }}
+
+    <h2>부서별 연봉 총합 그래프</h2>
+    <img src="/static/img/graph.png">
+
+    <h2>성별·직급별 빈도표</h2>
+    {{ table_html|safe }}
+</body>
+</html>
