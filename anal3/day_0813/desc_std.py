@@ -35,10 +35,39 @@ print(class1)
 print(f'평균 : {mean1:.2f}, 표준편차 : {std1:.2f}, 분산 : {var1:.2f}')
 print('2반 (성적)')
 print(f'평균 : {mean2:.2f}, 표준편차 : {std2:.2f}, 분산 : {var2:.2f}')
-df = pd.DataFrame(
-    'class' : ['1반'],['2반']
-    'score' : np.concatenate([class1,class]_)
+df = pd.DataFrame({
+    'class' : ['1반'] * 100 + ['2반'] * 100,
+    'score' : np.concatenate([class1,class2])
     
-)
+})
 print(df.head(3))
 print(df.tail(3))
+# 여기부터 8/14에 더 작업
+df.to_csv('desc_std1_1.csv', index = False, encoding = 'utf-8')
+
+# 시각화 : 산포도
+x1 = np.random.normal(1, 0.05, size = 100)
+x2 = np.random.normal(2, 0.05, size = 100)
+
+plt.figure(figsize = (10,6))
+plt.scatter(x1, class1, label = f'1반 (평균 = {mean1:.2f}, σ = {std1:.2f})')
+plt.scatter(x2, class1, label = f'2반 (평균 = {mean1:.2f}, σ = {std2:.2f})')
+plt.hlines(target_mean, 0.5, 2.5, colors = 'red', linestyles = 'dashed', label = f'공통평균 = {target_mean}')
+plt.title('동일 평균, 다른 성적 분포를 가진 두 반 비교')
+plt.xticks([1,2], ['1반', '2반'])
+plt.ylabel('시험 점수')
+plt.legend();   # ; 이거 빼도 되고 놔둬도 돼
+plt.tight_layout()
+# plt.show()
+plt.close()
+
+# 시각화 : 박스플롯
+plt.figure(figsize = (8,5))
+plt.boxplot([class1,class2],labels = ['1반','2반'])
+plt.title('성적 분포에 대한 박스플롯')
+plt.ylabel('시험 점수')
+plt.grid(True)
+plt.tight_layout
+# plt.show()
+plt.close()
+
