@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body>
+    <h3>*커피 전문점에 대한 소비자 인식 결과</h3>
+    {% if crossTbl %}
+    {{crossTbl | safe}}
+    {% endif %}
+    <br/>
+    {% if results %}
+    {{results | safe}}
+    {% endif %}
+    <hr/>
+    <br/>
+    <img src = '/static/images/cobar.png' width = '40%'/>
+    <a href = '/coffee/survey'>다시 설문 조사</a>&nbsp;&nbsp;
+    <a href = '/'>메인으로</a>
+    <hr/>
+    참고 : DataFrame vnffur : <br/>
+    {% if df %}
+    {{df | safe}}
+    {% endif %}
+
+    
+</body>
+</html>
