@@ -63,3 +63,4 @@ print('statistics : %.3f, pvalue : %.3f'%res)
 
 # 해석 : 정규성은 부족하지만 t-test와 Wilcoxon은 같은 결과를 얻었다. 표본수가 커지면 결과는 달라질 수 있다.
 # 정규성 위배가 있었음에도 t-test 결과는 신뢰할 수 있다.
+
