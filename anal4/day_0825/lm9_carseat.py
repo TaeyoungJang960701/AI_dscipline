@@ -82,7 +82,7 @@ print('\n정규성 : 잔차항이 정규 분포를 따라야 함')
 import scipy.stats as stats
 sr = stats.zscore(residual)
 (x,y), _ = stats.probplot(sr)
-print(x,y)
+print('zscore 모듈로 나온 데이터 x, y :', x,y)
 sns.scatterplot(x = x, y = y)
 plt.title('Scatterplot')
 # sns.scatterplot(sr)       아니 이것도 되던데 이건 뭐야
