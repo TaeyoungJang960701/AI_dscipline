@@ -27,12 +27,12 @@ print('-' * 100)
 
 # 이건 표 볼때만 주석 해제
 
-# import matplotlib.pyplot as plt
-# plt.rc('font', family = 'Malgun Gothic')
-# plt.scatter(df.적절성, df.만족도)
-# slope, intercept = np.polyfit(df.적절성, df.만족도, 1)
-# plt.plot(df.적절성, df.적절성 * slope + intercept, 'b')
-# plt.show()
+import matplotlib.pyplot as plt
+plt.rc('font', family = 'Malgun Gothic')
+plt.scatter(df.적절성, df.만족도)
+slope, intercept = np.polyfit(df.적절성, df.만족도, 1)
+plt.plot(df.적절성, df.적절성 * slope + intercept, 'b')
+plt.show()
 
 #                             OLS Regression Results
 # ==============================================================================
@@ -56,7 +56,6 @@ print('-' * 100)
 # Skew:                          -0.328   Prob(JB):                     0.000335
 # Kurtosis:                       4.012   Cond. No.                         13.4
 # ==============================================================================
-
 
 
 # 여기부턴 결과창의 표 설명
@@ -112,4 +111,9 @@ print('-' * 100)
 # : 0.05보다 작으면 유의하다. 회귀모형의 유의성 확인용.
 
 # 표준오차에 대한 이야기
-# 이건 오늘의 강의필기에 더 써놧어 
+# 이건 오늘의 강의필기에 더 써놧어
+
+# 8/25 추가
+# 적절성            0.7393      0.038     19.340      0.000       0.664       0.815
+# 여기에 끝의 두 수 잇잖아 여기 사이에 intercept값이 들어가야 알맞대
+# 무슨 의미를 갖는 수들인지는 모르겟어
