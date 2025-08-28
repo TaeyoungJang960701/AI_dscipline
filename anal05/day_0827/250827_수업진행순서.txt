@@ -1,0 +1,26 @@
+250827
+오전
+# 어제 과제 리뷰
+- 회귀분석 문제 4,5번
+
+# 비선형회귀
+pdf 자료
+- 통계기초.pdf 페이지68
+	- 비선형회귀란 직선의 회귀선보다 더 정확하게 데이터 변화를 예측하는 데 목적이 있다.
+
+- 실습파일(anal04)
+- lm14_nonlinear.py : 비선형 회귀분석 PolynomialFeatures
+- lm15_nonlinear.py : 시각화로 먼저 보고, 선형으로 할지/ 비선형으로 할지 선택한다.
+- lm16_boston.py : 보스턴 집값 데이터(LSTAT 독립 : 모집단의 하위계층의 비율 - MEDV 종속 : 주택가격)
+- lm16_ex_answer.py : 비선형 회귀분석 문제 강사님 답안
+
+--------------------
+오후
+# 로지스틱 함수
+카페 자료
+- Logistic Regression - https://cafe.daum.net/flowlife/SBU0/16?svc=toprank
+- 확률과 가능도 - https://cafe.daum.net/flowlife/SBU0/67?svc=toprank
+- 확률과 가능도와 함수에 관한 기본 이해 - https://cafe.daum.net/flowlife/SBU0/70?svc=toprank
+
+- 실습파일(anal05)
+- logi01.py : 로지스틱 회귀분석

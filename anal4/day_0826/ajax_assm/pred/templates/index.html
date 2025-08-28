@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>근무년수로 연봉 예측 (Ajax)</title> <!-- 페이지 제목 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 로드 -->
+</head>
+<body>
+    <h2>근무년수로 연봉 예측 (Ajax)</h2> <!-- 페이지 헤더 -->
+    <!-- 근무년수 입력 폼 -->
+    <form id="salaryForm">
+        <label>근무년수:</label>
+        <input type="number" name="years" step="0.1" required> <!-- 근무년수 입력 -->
+        <button type="submit">예상 연봉 계산</button> <!-- 폼 제출 버튼 -->
+    </form>
+    <div id="result"></div> <!-- Ajax 결과가 표시될 영역 -->
+    <script>
+    // 문서가 준비되면 실행
+    $(function(){
+        // 폼 제출 이벤트 핸들러
+        $('#salaryForm').on('submit', function(e){
+            e.preventDefault(); // 폼의 기본 동작(새로고침) 방지
+            $.ajax({
+                url: '', // 현재 경로로 Ajax 요청
+                type: 'POST', // POST 방식으로 데이터 전송
+                data: $(this).serialize(), // 폼 데이터 직렬화
+                headers: {'X-CSRFToken': '{{ csrf_token }}'}, // CSRF 토큰 헤더(생략 가능)
+                success: function(data){
+                    // 성공 시 결과를 result 영역에 표시
+                    $('#result').html('<p>예상 연봉: ' + data.predicted_salary + ' 만원</p>');
+                },
+                error: function(){
+                    // 오류 발생 시 메시지 표시
+                    $('#result').html('<p>오류가 발생했습니다.</p>');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
