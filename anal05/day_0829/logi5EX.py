@@ -17,6 +17,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/pykwon/python/refs/heads/mas
 print(df.head())
 x = df[['게임','TV시청']]
 y = df[['안경유무']]
+# print('상관관계 : \n', df.iloc[:,2].corr())
 # print(x)
 # print(y)
 df = df.drop(['번호','신장','체중'], axis = 1)
