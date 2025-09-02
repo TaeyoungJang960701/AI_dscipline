@@ -1,0 +1,21 @@
+# def grade(q):
+#     if q >= 10:
+#         return 10
+#     elif q > 9:
+#         return 9
+#     elif q > 8:
+#         return 8
+#     elif q > 7:
+#         return 7
+#     elif q > 6:
+#         return 6
+#     elif q > 5:
+#         return 5
+#     elif q > 4:
+#         return 4
+#     elif q > 3:
+#         return 3
+#     elif q > 2:
+#         return 2
+#     elif q > 1:
+#         return 1
