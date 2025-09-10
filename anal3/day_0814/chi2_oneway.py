@@ -42,7 +42,7 @@ print(sdata)
 
 print(stats.chisquare(sdata['관측도수']))
 print('-' * 100)
-# Power_divergenceResult(statistic=np.float64(20.488188976377952), 
+# Power_divergenceResult(statistic=np.float64(20.488188976377952),
 # pvalue=np.float64(0.00039991784008227264))
 
 # 결과 : p-value = 0.0004 < 유의수준 (0.05)     귀무 기각, 대립가설 채택.
@@ -85,4 +85,3 @@ print('-' * 100)
 sdata.sort_values(by = '차이(관측-기대)', ascending = False, inplace = True)
 sdata.reset_index(drop = True, inplace = True)
 print(sdata.head())
-

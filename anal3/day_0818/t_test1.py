@@ -24,7 +24,8 @@ print(np.array(one_sample).mean())  # 174.42
 result = stats.ttest_1samp(one_sample, popmean = 179)   # t test 이게 기본 클래스로 들어잇나봐 파이선 라이브러리에
 print('statistics : %.3f, pvalue : %.3f'%result)
 # statistics : -0.555, pvalue : 0.608
-# pvalue가 0.05보다 크다 - > 귀무가설 채택 
+# pvalue가 0.05보다 크다 - > 귀무가설 채택
+
 # plt.boxplot(one_sample)
 # plt.xlabel('data')
 # plt.ylabel('value')
