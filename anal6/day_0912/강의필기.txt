@@ -1,0 +1,11 @@
+학습과정에서 일어나는 일
+
+			학습과정에서의 참조?		모델의 인자(가중치)설정에 이용?		모델의 성능평간에 이용?
+
+training data		o							o						x
+
+validation data		o							x						x
+
+test data			x							o,x						o
+
+
