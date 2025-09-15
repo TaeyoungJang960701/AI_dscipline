@@ -1,0 +1,101 @@
+2025.09.15(엔드 투 엔드-)
+[오전][ tf16hdcar.ipynb - tf1ipynb]
+엔드 투 엔드(End-to-End) 학습
+ - 입력(Input)부터 출력(Output)까지 전 과정을 하나의 모델이 직접 학습하여 처리하는 방식을 말한다.
+ - 기존에는 특징공학(Feature Engineering)하거나 규칙을 정의하지 않고, 
+ - 모델이 스스로 원천 데이터에서 유용한 표현을 학습하고 결과를 도출한다.
+ - 특징 추출부터 분류까지 모든 과정을 하나의 모델이 처리한다.
+ - 데이터 전처리 과정을 최소화한다.
+ - 중간 결과물에 대한 인위적 가공을 하지 않는다.
+    Ex)음성 인식, 기계 번역, 이미지 분류
+
+------
+심층 신경망(Deep Neural Network, DNN)
+ - 여러 개의 은닉층(hidden layer)으로 구성되어 여러 단계의 비선형 함수를 학습한다.
+ - 다층 퍼셉트론(MLP)을 확장한 구조이다.
+ - 입력층(Input layer), 은닉층(Hidden layer), 출력층(Output layer)으로 구성된다.
+ - 은닉층의 뉴런들은 활성화 함수(Activation Function)를 통해 비선형성을 모델에 추가한다.
+
+------
+합성곱 신경망(CNN, Convolutional Neural Network)
+ - 이미지 처리에 강점을 가진 딥러닝 모델
+ - 합성곱 연산(Convolution)을 통해 지역적 특징을 추출
+ - 풀링(Pooling) 연산을 통해 특징 맵(feature map)의 크기를 축소
+ - 다수의 합성곱 층과 풀링 층이 계층적으로 결합
+
+------
+순환 신경망(RNN, Recurrent Neural Network)
+ - 순차적 데이터(시계열, 텍스트 등)에 적합한 모델
+ - 이전 시점의 출력을 현재 시점의 입력으로 활용하여 시퀀스 데이터의 의존성을 학습
+ - 기울기 소실 문제(Gradient Vanishing Problem)를 겪을 수 있다.
+ - 이를 보완하기 위해 LSTM, GRU 등의 변형 모델이 고안됨
+
+------
+트랜스포머(Transformer)
+ - 2017년 구글이 발표한 모델
+ - RNN을 사용하지 않고도 시퀀스 데이터를 효과적으로 학습 가능
+ - 어텐션(Attention) 메커니즘을 통해 입력 전체를 동시에 참조
+ - 기계 번역(NMT, Neural Machine Translation), 문장 분류, 요약, 질의응답 등 자연어 처리(NLP) 분야에서 뛰어난 성능
+
+------
+대표적 응용 분야
+ - 음성 인식: CNN + RNN
+ - 기계 번역: Transformer
+ - 이미지 분류: CNN
+ - 텍스트 요약: Transformer
+ - 감정 분석: RNN → LSTM/GRU → Transformer
+
+------
+분류기법(Logi, Knn, 의사결정나무/랜덤포레스트...)
+
+활성화함수와 변종
+(https://heeya-stupidbutstudying.tistory.com/entry/ML-%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98Activation-Function)
+
+Drop-out 개념(https://www.blog.data101.io/127)
+ - 개념: Drop-out은 서로 연결된 연결망(layer)에서 0부터 1 사이의 확률로 뉴런을 제거(drop)하는 기법입니다
+ 	   Drop-out Rate는 하이퍼파라미터이며 일반적으로 0.5로 설정
+ - 목적: Drop-out은 어떤 특정설명변수 Feature만을 과도하게 집중하여 학습함으로써 발생할 수 있는 과대적합을 방지
+
+기울기 소실 및 폭주
+ - 기울기 소실 : 역전파 과정에서 입력층으로 갈수록, 기울기가 점차적으로 작아지는 현상
+ - 기울기 폭주 : 기울기 소실과 반대로, 기울기가 입력층으로 갈수록 점차 커지다가 가중치들이 비정상적으로 큰 값이 되면서 발   
+                      산되는 현상
+------
+이항 분류시 입력 데이터가 불균형한 경우 (9 : 1)
+1) train_test_split 시 stratify 사용 권장
+데이터를 train/test로 나눌 때 stratify=y를 주면 클래스 비율이 유지된다.
+만약 안 쓰면, 운 나쁘게 test set에 특정 클래스가 상대적으로 적게 들어가서 학습/평가 결과가 왜곡될 수 있다.
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y,
+    test_size=0.3,
+    shuffle=True,
+    random_state=12,
+    stratify=y     # 클래스 비율 유지
+)
+------
+여러 Dense 층 파라미터 수 다양하게 부여(https://cafe.daum.net/flowlife/S2Ul/77)
+세 가지 구조(크게→작게, 균일, 작게→크게)는 딥러닝 모델 설계에서 자주 고민하는 주제이다.
+1. 크게 → 작게 (Decreasing)
+   특징: 입력을 넓게 받아서(많은 유닛) 점점 압축하면서 중요한 특징만 남김.
+   장점: 고차원 입력에서 특징 추출 → 요약 구조와 비슷 (Autoencoder encoder 구조). 차원 축소를 자연스럽게 해 주어 과적합   
+   방지에 도움.
+   단점: 초반에 너무 많은 유닛을 두면 불필요한 파라미터가 많아질 수 있음.
+
+2. 균일 (Uniform)
+  특징: 모든 층이 같은 크기.
+  장점: 단순하고 직관적, 파라미터 수가 비교적 안정적.
+  단점: 학습 효율이나 표현력 측면에서 항상 최적은 아님.
+  추천 상황: 베이스라인 모델 만들 때 (성능 비교용 기준점).
+
+3. 작게 → 크게 (Increasing)
+  특징: 점점 유닛 수를 늘리면서 복잡한 표현 학습.
+  장점: 입력을 가볍게 처리하고, 뒤쪽에서 복잡한 특징 조합 가능.
+  단점: 뒤쪽이 넓어질수록 과적합 위험 ↑, 연산량 ↑.
+  추천 상황: 입력이 단순하고, 뒷단에서 복잡한 관계를 학습해야 할 때.
+
+4. 실무/연구에서의 관례
+일반적으로는 "크게 → 작게 (피라미드 구조)"가 많이 추천된다.
+이유: CNN, Transformer 등 많은 네트워크에서 점점 차원을 줄이는 구조가 효율적이고 과적합 위험을 줄임.
+
