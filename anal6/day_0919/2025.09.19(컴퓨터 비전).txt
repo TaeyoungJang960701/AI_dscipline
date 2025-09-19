@@ -1,0 +1,32 @@
+2025.09.18(컴퓨터 비전)
+[오전][ tf32ipynb - tf.3ipynb]
+[https://cafe.daum.net/flowlife/S2Ul/11]
+컴퓨터 비전(Computer Vision)
+    사람의 시각 기능을 소프트웨어로 모사해 이미지·동영상을 이해하고 의사결정에 쓰게 하는 분야다.
+    쉽게 말해, 픽셀을 의미(무엇/어디/어떻게)로 바꾸는 기술
+
+OpenCV : 그 비전을 현실에서 굴러가게 만드는 범용 도구 상자이자 구현 라이브러리
+
+사용분야
+- 분류 Ex) 이미지에 고양이인가? (image classification)
+- 검출 Ex)  물체의 위치와 종류 (object detection, mAP)
+- 분할 Ex)  픽셀 단위로 경계 구분 (semantic/instance segmentation, IoU)
+- 키포인트/자세 Ex)  관절 위치, 포즈 추정
+- 추적 Ex)  영상에서 같은 물체 계속 따라가기 (MOT)
+- OCR Ex)  글자 영역 찾고 읽기
+- 복원/변환 Ex)  노이즈 제거, 초해상도, 색보정, 스타일 변환
+- 3D 이해 Ex)  깊이 추정, 구조 복원(SfM)
+
+AI의 관계도
+AI
+ └─ Machine Learning
+     └─ Deep Learning
+         ├─ (기법) CNN, Transformer ...
+         └─ [응용 분야] Computer Vision
+              ├─ 분류/분할/검출/추적/복원 ...
+              └─ (검출의 한 방법) YOLO 계열
+
+합성곱에서는 GPU필수 안쓰면 느림
+-----------------------
+
+	
