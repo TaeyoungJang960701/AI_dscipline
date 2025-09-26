@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Food Classifier</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>음식 이미지 분류기</h1>
+
+  <input type="file" id="fileInput" accept="image/*"><br><br>
+  <img id="preview" src="" alt="preview" width="300" style="display:none;"><br>
+  <button id="predictBtn">분류 요청</button>
+
+  <h3 id="result"></h3>
+  <img id="viz" src="" alt="viz" style="display:none; width:400px;">
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+    const predictBtn = document.getElementById('predictBtn');
+    const result = document.getElementById('result');
+    const viz = document.getElementById('viz');
+    let selectedFile = null;
+
+    fileInput.addEventListener('change', (e) => {
+      selectedFile = e.target.files[0];
+      if (!selectedFile) return;
+      const url = URL.createObjectURL(selectedFile);
+      preview.src = url;
+      preview.style.display = 'block';
+    });
+
+    predictBtn.addEventListener('click', () => {
+      if (!selectedFile) {
+        alert('이미지를 선택하세요');
+        return;
+      }
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      result.textContent = '분류 중...';
+      viz.style.display = 'none';
+
+      axios.post('/predict/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      .then(res => {
+        const data = res.data;
+        result.textContent = `예측: ${data.pred_label} (신뢰도: ${(data.confidence*100).toFixed(1)}%)`;
+        viz.src = data.viz_url;
+        viz.style.display = 'block';
+      })
+      .catch(err => {
+        console.error(err);
+        result.textContent = '오류 발생';
+      });
+    });
+  </script>
+</body>
+</html>
