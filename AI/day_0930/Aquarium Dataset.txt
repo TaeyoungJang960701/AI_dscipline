@@ -1,0 +1,13 @@
+아쿠아리움 데이터셋
+
+데이터셋 다운로드 링크
+
+https://public.roboflow.com/ds/ZydhPnkRin?key=HiFM6rC0qo
+
+
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 7
+names: ['fish', 'jellyfish', 'penguin', 'puffin', 'shark', 'starfish', 'stingray']

@@ -1,0 +1,4 @@
+﻿image,object_count,classes,avg_confidence
+image1.jpg,2,person,0.727
+image2.jpg,2,person,0.788
+image3.jpg,9,"car,motorcycle,person",0.526
