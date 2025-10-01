@@ -32,7 +32,7 @@ speak_shelter_info(message)
 def show_shelter_info_func(region, shelters, detected_info):
     # shelters를 함수처럼 호출한 부분 수정 → dict 조회(지피티)
     shelter_info = shelters.get(region, shelters['기본'])
-    
+
     # join 구문 및 message tuple → 문자열로 수정(지피티)
     pet_summary = f"{detected_info['count']}마리 ({','.join(detected_info['labels'])})"
     message = (
