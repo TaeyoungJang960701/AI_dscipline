@@ -93,3 +93,4 @@ if has_masks and len(masks_np) > 0 :
         conf_map[update] = conf
 
 cv2.imwrite(os.path.join(OUT_DIR, 'seg_semantic.png'), sem_canvas)
+
